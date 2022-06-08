@@ -1,23 +1,27 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 
-function App() {
-  const profiles = [
-    { name: 'taro', age: 10 },
-    { name: 'Hanako', age: 5 }
-  ]
+const App = () => {
   return (
-    <div className='App'>
-      {
-        profiles.map((profile, index) => {
-          return <User name={profile.name} age={profile.age} key={index}/>
-        })
-      }
-    </div>
+    <Counter></Counter>
   );
 }
 
-function User(props) {
-  return <div>I am {props.name}, and {props.age} years old1</div>;
+const Counter = () => {
+  const Count = React.useState(0);
+
+  const handlePlusButton = () => {
+    const currentCount = this.state.count;
+    this.setState({ count: Count + 1})
+  }
+
+    return (
+      <React.Fragment>
+        <div>count: { this.state.count }</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button>-1</button>
+      </React.Fragment>
+    );
 }
 
 export default App;
