@@ -1,27 +1,27 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import { connect } from 'react-redux';
+import { increment, decrement } from '../actions';
 
 const App = () => {
+  render() {
+    const porps = this.props;
+  }
+
   return (
-    <Counter></Counter>
+    <React.Fragment>
+      <div>value: {props.value}</div>
+      <button onClick={props.increment}></button>
+      <button onClick={props.decrement}></button>
+    </React.Fragment>
   );
 }
 
-const Counter = () => {
-  const Count = React.useState(0);
+const mapStateToProps = state => ({ value: state.count.value });
+const mapDispatchToProps = dispatch => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement())
+})
 
-  const handlePlusButton = () => {
-    const currentCount = this.state.count;
-    this.setState({ count: Count + 1})
-  }
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-    return (
-      <React.Fragment>
-        <div>count: { this.state.count }</div>
-        <button onClick={this.handlePlusButton}>+1</button>
-        <button>-1</button>
-      </React.Fragment>
-    );
-}
-
-export default App;
